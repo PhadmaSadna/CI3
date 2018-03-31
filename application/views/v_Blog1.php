@@ -19,27 +19,29 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url()?>Home/">Home</a></li>
-            <li class="active"><a href="<?php echo site_url()?>About/">About</a></li>
+            <li class="active"><a href="<?php echo site_url()?>Home/">Home</a></li>
+            <li><a href="<?php echo site_url()?>About/">About</a></li>
             <li><a href="<?php echo site_url()?>Blog/">Blog</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Contact Me</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <br><br><br>
+    <br><br><br><br>
 
     <div class="container">
-    	<div class="jumbotron">
-    		<h1>Hai, You!!</h1>
-    		<p>
-    			Welcome to My First Page learn about CI & Boostrap. <br>
-    			Make ur self as a priority! <br>
-    			Nice to meet you. Have A great day, You! ^_^
-    		</p>
-    	</div>
+    	<div class="col-xs-12 col-sm-9 col-md-9">
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <h3>What's Framework? Lanjutan</h3>
+              <p>
+                Buat para programer kata framework pastilah tidak asing lagi, karna untuk membuat aplikasi atau pemrograman web akan membutuhkan sebuah framework agar ... <br>
+                <a href="#">Read More ...</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </body>
 </html>
