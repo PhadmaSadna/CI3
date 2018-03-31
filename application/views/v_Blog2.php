@@ -33,7 +33,7 @@
         <div class="well well-sm">
           <div class="row">
             <div class="col-sm-12 col-md-12">
-              <h3>What's Framework?</h3>
+              <h3>What's Framework? Lanjutan 23</h3>
               <p>
                 Buat para programer kata framework pastilah tidak asing lagi, karna untuk membuat aplikasi atau pemrograman web akan membutuhkan sebuah framework agar ... <br>
                 <a href="#">Read More ...</a>

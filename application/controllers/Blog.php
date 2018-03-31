@@ -8,8 +8,15 @@
 			$this->load->view('v_Blog');	
 		}
 
-		public function view() {
-			$this->load->view('v_Blog1');
+		public function view($id) {
+		
+			if ($id == 1) {
+				$this->load->view('v_Blog1');
+			} else if ($id == 2) {
+				$this->load->view('v_Blog2');
+			}
+			
 		}
+
 	}
 ?>

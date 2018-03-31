@@ -36,7 +36,7 @@
               <h3>What's Framework?</h3>
               <p>
                 Buat para programer kata framework pastilah tidak asing lagi, karna untuk membuat aplikasi atau pemrograman web akan membutuhkan sebuah framework agar ... <br>
-                <a href="<a href="<?php echo site_url()?>Blog/view">Read More ...</a>
+                <a href="<?php echo site_url()?>Blog/view/1">Read More ...</a>
               </p>
             </div>
           </div>
@@ -47,7 +47,7 @@
               <h3>What's Bootstrap?</h3>
               <p>
                 Bootstrap adalah sebuah framework css yang dapat digunakan untuk mempermudah membangun tampilan web. Bootstrap pertama kali di .. <br>
-                <a href="#">Read More ...</a>
+                <a href="<?php echo site_url()?>Blog/view/2">Read More ...</a>
               </p>
             </div>
           </div>
