@@ -33,10 +33,23 @@
         <div class="well well-sm">
           <div class="row">
             <div class="col-sm-12 col-md-12">
-              <h3>What's Framework?</h3>
+              <h3><?php echo $artikel1['judul']; ?></h3>
+                    <p>
+                      <?php echo $artikel1['isi']; ?>
+                      <br>
+                      <a href="#">Read More ...</a>
+                    </p>
+              </div>
+          </div>
+        </div>
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <h3><?php echo $artikel2['judul1']; ?></h3>
               <p>
-                Buat para programer kata framework pastilah tidak asing lagi, karna untuk membuat aplikasi atau pemrograman web akan membutuhkan sebuah framework agar ... <br>
-                <a href="<?php echo site_url()?>Blog/view/1">Read More ...</a>
+                <?php echo $artikel2['isi1']; ?>
+                <br>
+                <a href="#">Read More ...</a>
               </p>
             </div>
           </div>
@@ -44,20 +57,10 @@
         <div class="well well-sm">
           <div class="row">
             <div class="col-sm-12 col-md-12">
-              <h3>What's Bootstrap?</h3>
+              <h3><?php echo $artikel3['judul2']; ?></h3>
               <p>
-                Bootstrap adalah sebuah framework css yang dapat digunakan untuk mempermudah membangun tampilan web. Bootstrap pertama kali di .. <br>
-                <a href="<?php echo site_url()?>Blog/view/2">Read More ...</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="well well-sm">
-          <div class="row">
-            <div class="col-sm-12 col-md-12">
-              <h3>Why we should use Framework?</h3>
-              <p>
-                Framework secara sederhana dapat diartikan sebagai sebuah perpustakaan yang berisi kumpulan fungsi / prosedur dan kelas untuk tujuan .. <br>
+                <?php echo $artikel3['isi2']; ?>
+                <br>
                 <a href="#">Read More ...</a>
               </p>
             </div>
