@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
@@ -30,17 +31,33 @@
         </div>
       </div>
     </nav>
-    <br><br><br>
+    <br>
 
     <div class="container">
-    	<div class="jumbotron">
-    		<h1>Hai, You!!</h1>
-    		<p>
-    			Welcome to My First Page learn about CI & Boostrap. <br>
-    			Make ur self as a priority! <br>
-    			Nice to meet you. Have A great day, You! ^_^
-    		</p>
-    	</div>
+    	<?php 
+        echo form_open_multipart('Blog/insert_news')
+      ?>
+      <div class="col-sm-9">
+       <h4><small>NEW POST HERE</small></h4>
+       <hr>
+        <label>Title</label>
+        <input type="text" class="form-control" name="title"><br>
+        <label>Author</label>
+        <input type="text" class="form-control" name="author"><br>
+        <label>Content</label>
+        <textarea name="content" class="form-control" style="height:300px;"></textarea><br>
+        <label>You can upload file by type: .jpg .jpeg .png</label>
+        <input type="file" name="image" required=""><br>
+        <input type="submit" class="btn btn-primary" value="Posting"><hr>
+        <?php
+          if(validation_errors()){
+            echo "<div class='alert alert-danger'>
+                <strong>Danger!</strong>".validation_errors()."
+                </div>"
+                ;
+          }
+        ?>
+      </div>
     </div>
 </body>
 </html>

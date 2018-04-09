@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Introduction CI With Bootstrap</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
-	<script type="text/javascript" src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
+  <title>Introduction CI With Bootstrap</title>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
+  <script type="text/javascript" src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,45 +28,45 @@
     </nav>
     <br><br><br><br>
 
+
+
     <div class="container">
-    	<div class="col-xs-12 col-sm-9 col-md-9">
+      <div class="col-xs-12 col-sm-9 col-md-9">
+        <a href="<?php echo base_url().'blog/insert_news'?>" class="btn btn-danger">Add News</a>
+      </div>
+      <?php
+        function limit_words($string, $word_limit){
+          $words = explode(" ", $string);
+          return implode(" ", array_splice($words, 0, $word_limit));
+        }
+
+        foreach ($data -> result_array() as $i) :
+          $id       = $i['id'];
+          $judul    = $i['title'];
+          $content  = $i['content'];
+          $datepost = $i['datepost'];
+          $image    = $i['image'];
+        
+      ?>
+
+      <div class="col-xs-12 col-sm-9 col-md-9">
+        <br>
         <div class="well well-sm">
           <div class="row">
-            <div class="col-sm-12 col-md-12">
-              <h3><?php echo $artikel1['judul']; ?></h3>
-                    <p>
-                      <?php echo $artikel1['isi']; ?>
-                      <br>
-                      <a href="#">Read More ...</a>
-                    </p>
-              </div>
-          </div>
-        </div>
-        <div class="well well-sm">
-          <div class="row">
-            <div class="col-sm-12 col-md-12">
-              <h3><?php echo $artikel2['judul1']; ?></h3>
-              <p>
-                <?php echo $artikel2['isi1']; ?>
-                <br>
-                <a href="#">Read More ...</a>
-              </p>
+            <div class="col-md-5">
+              <img class="img img-circle" src="<?php echo base_url().'assets/img/'.$image;?>" width="150px" height="150px">
             </div>
-          </div>
-        </div>
-        <div class="well well-sm">
-          <div class="row">
-            <div class="col-sm-12 col-md-12">
-              <h3><?php echo $artikel3['judul2']; ?></h3>
+            <div class="col-md-7">
+              <h3><?php echo $judul; ?></h3>
               <p>
-                <?php echo $artikel3['isi2']; ?>
-                <br>
-                <a href="#">Read More ...</a>
+                <?php echo limit_words($content,20);?> <br>
+                <a href="<?php echo base_url().'Blog/view/'.$id;?>"> Read more... </a>
               </p>
             </div>
           </div>
         </div>
       </div>
+      <?php endforeach;?>
     </div>
 </body>
 </html>
