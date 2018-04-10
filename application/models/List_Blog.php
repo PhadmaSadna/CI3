@@ -21,5 +21,15 @@
 		public function create_news($data){
 			$this->db->insert('artikel', $data);
 		}
+
+		public function edit_news($id, $data){
+			$this->db->where('id', $id);
+			return $this->db->update('artikel', $data);
+		}
+
+		public function delete_news($idN){
+			$this->db->where('id', $idN);
+			return $this->db->delete('artikel');
+		}
 	}
 ?>

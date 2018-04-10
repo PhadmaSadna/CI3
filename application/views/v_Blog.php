@@ -3,7 +3,9 @@
 <head>
   <title>Introduction CI With Bootstrap</title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fontawesome/web-fonts-with-css/css/fontawesome.min.css')?>">
   <script type="text/javascript" src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
+
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -60,7 +62,9 @@
               <h3><?php echo $judul; ?></h3>
               <p>
                 <?php echo limit_words($content,20);?> <br>
-                <a href="<?php echo base_url().'Blog/view/'.$id;?>"> Read more... </a>
+                <a href="<?php echo base_url().'Blog/view/'.$id;?>"> Read more... </a> <br><br>
+                <a href="<?php echo site_url('Blog/edit_news/'.$i['id'])?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
+                <a href="<?php echo site_url('Blog/delete_news/'.$i['id']) ?>" class="btn btn-danger">Delete</a>
               </p>
             </div>
           </div>
