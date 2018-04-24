@@ -1,7 +1,7 @@
 <?php 
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Blog extends CI_Controller {
+	class BlogAdmin extends CI_Controller {
 
 	    public function __construct(){
 	    	parent::__construct();
@@ -11,10 +11,40 @@
 
 	    public function index()
         {
-            $id = $this->uri->segment(3);
+            $url = $this->uri->segment(3);
+            $this->load->library('pagination');
 
-            $x['data'] = $this->List_Blog->get_all_news();
-            $this->load->view('v_Blog', $x);
+            $x['data'] = $this->List_Blog->get_articles($url);
+            
+            $paging = $x['data']['getRows'];
+            $config['base_url'] = 'http://localhost/ci3/page';
+            $config['total_rows'] = $paging;
+            $config['per_page'] = 2;
+            $config['uri_segment'] = 3;
+            $config['num_links'] = 2;
+            $config['full_tag_open'] = '<div><ul class="pagination">';
+            $config['full_tag_close'] = '</ul></div>';
+            $config['prev_link'] = '&lt; Prev';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_link'] = 'Next &gt;';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+            $config['cur_tag_open'] = '<li class="active"><a href="#">';
+            $config['cur_tag_close'] = '</a></li>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['first_link'] = 'First';
+            $config['first_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
+            $config['last_link'] = 'Last';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
+            
+            $this->pagination->initialize($config);
+
+            $this->load->view('v_BlogAdmin', $x);
+            $x['pagination'] = $this->pagination->create_links();
         }
 
         public function view()
@@ -31,6 +61,7 @@
             $this->form_validation->set_rules('author', 'Author', 'required');
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('content', 'Content', 'required');
+            $this->form_validation->set_rules('image', 'Image', 'required');
 
                if ($this->form_validation->run() == FALSE) {
                    $this->load->view('v_CreateNews');
@@ -69,6 +100,7 @@
             $this->form_validation->set_rules('author', 'Author', 'required');
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('content', 'Content', 'required');
+            $this->form_validation->set_rules('image', 'Image', 'required');
 
             $id = $this->uri->segment(3);
             $data['show_article'] = $this->List_Blog->get_news_by_id($id);

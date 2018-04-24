@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css')?>">
 	<script type="text/javascript" src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
+  <script type="text/javascript" src="<?php echo base_url()?>assets/validation.js"></script>
 </head>
 <body>
 
@@ -24,6 +25,7 @@
             <li><a href="<?php echo site_url()?>Home/">Home</a></li>
             <li class="active"><a href="<?php echo site_url()?>About/">About</a></li>
             <li><a href="<?php echo site_url()?>Blog/">Blog</a></li>
+            <li><a href="<?php echo site_url()?>BlogAdmin/">Blog Admin</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Contact Me</a></li>
@@ -35,29 +37,55 @@
 
     <div class="container">
     	<?php 
-        echo form_open_multipart('Blog/insert_news')
+        echo form_open_multipart('Blog/insert_news', 
+          array(
+            'class' => 'b_validation',
+            'novalidate' => ''));
       ?>
       <div class="col-sm-9">
        <h4><small>NEW POST HERE</small></h4>
        <hr>
-        <label>Title</label>
-        <input type="text" class="form-control" name="title"><br>
-        <label>Author</label>
-        <input type="text" class="form-control" name="author"><br>
-        <label>Content</label>
-        <textarea name="content" class="form-control" style="height:300px;"></textarea><br>
-        <label>You can upload file by type: .jpg .jpeg .png</label>
-        <input type="file" name="image" required=""><br>
-        <input type="submit" class="btn btn-primary" value="Posting"><hr>
         <?php
           if(validation_errors()){
             echo "<div class='alert alert-danger'>
-                <strong>Danger!</strong>".validation_errors()."
+                <strong>Upss!</strong>".validation_errors()."
                 </div>"
                 ;
           }
         ?>
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" value="<?php echo set_value('title') ?>" required><br>
+        <div class="invalid-feedback">Please Fill The Tittle!</div>
+        <label>Author</label>
+        <input type="text" class="form-control" name="author" value="<?php echo set_value('author') ?>" required><br>
+        <div class="invalid-feedback">Please Fill The Author!</div>
+        <label>Content</label>
+        <textarea name="content" class="form-control" style="height:300px;" required><?php echo set_value('content') ?></textarea><br>
+        <div class="invalid-feedback">Please Fill The Content!</div>
+        <label>You can upload file by type: .jpg .jpeg .png</label>
+        <input type="file" name="image" required=""><br>
+        <div class="invalid-feedback">Please Fill The Image!</div>
+        <input type="submit" class="btn btn-primary" value="Posting"><hr>
       </div>
     </div>
+
+    <script>
+      (function() {
+       'use strict';
+       window.addEventListener('load', function() {
+         var forms = document.getElementsByClassName('b_validation');
+         var validation = Array.prototype.filter.call(forms, function(form) {
+           form.addEventListener('submit', function(event) {
+             if (form.checkValidity() === false) {
+               event.preventDefault();
+               event.stopPropagation();
+             }
+             form.classList.add('was-validated');
+           }, false);
+         });
+       }, false);
+      })();
+    </script>
+
 </body>
 </html>

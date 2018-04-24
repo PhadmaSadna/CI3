@@ -18,6 +18,13 @@
 			return $query;
 		}
 
+		public function get_articles($offset = 0){
+			$query['select'] = $this->db->select('*')->from('artikel')->limit(2,$offset)->order_by('datepost', 'desc')->get();
+            $rows = $this->db->get('artikel');
+            $query['getRows'] = $rows->num_rows();
+     		return $query;
+		}
+
 		public function create_news($data){
 			$this->db->insert('artikel', $data);
 		}
