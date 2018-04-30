@@ -12,7 +12,7 @@
 			$this->db->select ( '
 	            artikel.*, 
 	            kategori.idKategori as idKategori, 
-	            kategori.nnmKategori,
+	            kategori.nmKategori,
 	            kategori.deskripsi,
 	        ' );
 	        $this->db->join('kategori', 'kategori.idKategori = artikel.idKategori');

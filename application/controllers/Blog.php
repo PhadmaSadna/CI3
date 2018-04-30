@@ -68,6 +68,7 @@
         }
 
         public function edit_news(){
+            $data['kategori'] = $this->List_Blog->generate_cat_dropdown();
             $this->load->helper('form');
             $this->load->library('form_validation');
 
@@ -79,7 +80,7 @@
             $id = $this->uri->segment(3);
             $data['show_article'] = $this->List_Blog->get_news_by_id($id);
             if ($this->form_validation->run() == FALSE) {
-                $this->load->view('v_EditNews',$data);
+                $this->load->view('v_EditNews',$data, FALSE);
             } else {
                 $config['upload_path'] = 'assets/img/';
                 $config['allowed_types'] = 'jpg|png|jpeg';

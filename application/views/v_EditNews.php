@@ -55,6 +55,8 @@
                 ;
           }
         ?>
+        <label>Kategori</label>
+          <?php echo form_dropdown('idKategori', $kategori, set_value( 'idKategori', $show_article['idKategori'] ), 'class="form-control"' ); ?>
         <label>Title</label>
         <input type="text" class="form-control" name="title" value="<?php echo set_value('title', $show_article['title']) ?>" required><br>
         <div class="invalid-feedback">Please Fill The Tittle!</div>
