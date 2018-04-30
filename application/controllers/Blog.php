@@ -28,12 +28,16 @@
             $this->load->helper('form');
             $this->load->library('form_validation');
 
+            $data['kategori'] = $this->List_Blog->generate_cat_dropdown();
+
             $this->form_validation->set_rules('author', 'Author', 'required');
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('content', 'Content', 'required');
+            $this->form_validation->set_rules('idKategori', 'ID Kategori', 'required');
+
 
                if ($this->form_validation->run() == FALSE) {
-                   $this->load->view('v_CreateNews');
+                   $this->load->view('v_CreateNews', $data, FALSE);
                } else {
                     $config['upload_path'] = 'assets/img/';
                     $config['allowed_types'] = 'jpg|png|jpeg';
@@ -48,6 +52,7 @@
                         $data = array('upload_data' => $this->upload->data());
                         
                         $data['input'] = array(
+                            'idKategori' => $this->input->post('idKategori'),
                             'author' => $this->input->post('author'),
                             'title' => $this->input->post('title'),
                             'content' => $this->input->post('content'),
@@ -69,6 +74,7 @@
             $this->form_validation->set_rules('author', 'Author', 'required');
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('content', 'Content', 'required');
+            $this->form_validation->set_rules('idKategori', 'ID Kategori', 'required');
 
             $id = $this->uri->segment(3);
             $data['show_article'] = $this->List_Blog->get_news_by_id($id);
@@ -88,6 +94,7 @@
                     $data = array('upload_data' => $this->upload->data());
                     
                     $data['input'] = array(
+                        'idKategori' => $this->input->post('idKategori'),
                         'author' => $this->input->post('author'),
                         'title' => $this->input->post('title'),
                         'content' => $this->input->post('content'),

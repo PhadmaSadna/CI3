@@ -3,9 +3,10 @@
 <head>
   <title>Introduction CI With Bootstrap</title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fontawesome/web-fonts-with-css/css/fontawesome.min.css')?>">
   <script type="text/javascript" src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
+
 </head>
-</html>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -31,21 +32,41 @@
     </nav>
     <br><br><br><br>
 
+
+
     <div class="container">
-      <div class="col-xs-12 col-sm-9 col-md-9">
+      <div class="col-xs-6 col-sm-6 col-md-6">
+        <a href="<?php echo base_url().'C_Kategori/create'?>" class="btn btn-danger">Add Category</a>
+      </div>
+    </div>
+    <div class="container">
+      <?php
+        function limit_words($string, $word_limit){
+          $words = explode(" ", $string);
+          return implode(" ", array_splice($words, 0, $word_limit));
+        }
+
+        foreach ($kategori as $key) :
+        
+      ?>
+
+      <div class="col-xs-3 col-sm-3 col-md-3">
+        <br>
         <div class="well well-sm">
-            <center><h2><?php echo $data['title']?></h2></center>
-            <p align="right"><b>Posting by : <?php echo $data['author']?></b></p>
-            <hr>
-            <center>
-              <img src="<?php echo base_url().'assets/img/'.$data['image'];?>" width="200px" height="200px">
-            </center>
-            <br>
-            <p>
-              <?php echo $data['content']; ?>
-            </p>
+          <div class="row">
+            <div class="col-md-7">
+              <h3><?php echo $key->nmKategori; ?></h3>
+              <hr>
+              <p>
+                <?php echo limit_words($key->deskripsi, 4);?> <br>
+                <br>
+                  <a href="<?php echo base_url(). 'C_Kategori/edit/' . $key->idKategori ?>" class="btn btn-warning">Edit</a>
+                  <a href="<?php echo base_url() ?>C_Kategori/delete/<?php echo $key->idKategori ?>" class="btn btn-danger">Hapus</a>
+            </div>
+          </div>
         </div>
       </div>
+      <?php endforeach;?>
     </div>
 </body>
 </html>

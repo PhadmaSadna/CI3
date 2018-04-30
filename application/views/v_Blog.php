@@ -24,6 +24,7 @@
             <li class="active"><a href="<?php echo site_url()?>Home/">Home</a></li>
             <li><a href="<?php echo site_url()?>About/">About</a></li>
             <li><a href="<?php echo site_url()?>Blog/">Blog</a></li>
+            <li><a href="<?php echo site_url()?>C_Kategori/">Kategori</a></li>
             <li><a href="<?php echo site_url()?>BlogAdmin/">Blog Admin</a></li>
           </ul>
         </div>

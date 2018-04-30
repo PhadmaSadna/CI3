@@ -37,41 +37,26 @@
     <br>
 
     <div class="container">
-    	<?php 
-        echo form_open_multipart('Blog/insert_news', 
-          array(
-            'class' => 'b_validation',
-            'novalidate' => ''));
-      ?>
-      <div class="col-sm-9">
-       <h4><small>NEW POST HERE</small></h4>
-       <hr>
-        <?php
-          if(validation_errors()){
-            echo "<div class='alert alert-danger'>
-                <strong>Upss!</strong>".validation_errors()."
-                </div>"
-                ;
-          }
-        ?>
-        
-        <label>Kategori</label>
-          <?php echo form_dropdown('idKategori', $kategori, set_value('idKategori'), 'class="form-control" required' ); ?>
-        <div class="invalid-feedback">Pilih dulu kategorinya gan</div>
-        <label>Title</label>
-        <input type="text" class="form-control" name="title" value="<?php echo set_value('title') ?>" required><br>
-        <div class="invalid-feedback">Please Fill The Tittle!</div>
-        <label>Author</label>
-        <input type="text" class="form-control" name="author" value="<?php echo set_value('author') ?>" required><br>
-        <div class="invalid-feedback">Please Fill The Author!</div>
-        <label>Content</label>
-        <textarea name="content" class="form-control" style="height:300px;" required><?php echo set_value('content') ?></textarea><br>
-        <div class="invalid-feedback">Please Fill The Content!</div>
-        <label>You can upload file by type: .jpg .jpeg .png</label>
-        <input type="file" name="image" required=""><br>
-        <div class="invalid-feedback">Please Fill The Image!</div>
-        <input type="submit" class="btn btn-primary" value="Posting"><hr>
-      </div>
+    	 
+          <?php    
+            $this->form_validation->set_error_delimiters('<div class="alert alert-warning" role="alert">', '</div>');
+          ?>
+          <?php echo validation_errors(); ?>
+
+          <?php echo form_open( 'C_Kategori/create', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
+
+          <div class="form-group">
+            <label for="cat_name">Nama Kategori</label>
+            <input type="text" class="form-control" name="nmKategori" value="<?php echo set_value('nmKategori') ?>" required>
+            <div class="invalid-feedback">Isi judul dulu gan</div>
+          </div>
+          <div class="form-group">
+            <label for="text">Deskripsi</label>
+            <input type="text" class="form-control" name="deskripsi" value="<?php echo set_value('deskripsi') ?>" required>
+            <div class="invalid-feedback">Isi deskripsinya dulu gan</div>
+          </div>
+          <button id="submitBtn" type="submit" class="btn btn-primary">Simpan</button>
+        </form>
     </div>
 
     <script>
