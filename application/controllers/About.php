@@ -5,7 +5,8 @@
 
 	    public function index()
 		{
-			$this->load->view('v_AboutMe');	
+			$this->load->view('Header.php');
+			$this->load->view('frontend/v_AboutMe');	
 		}
 	}
 ?>

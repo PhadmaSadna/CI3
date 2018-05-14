@@ -21,10 +21,22 @@
 			return $query->row_array();
 		}
 
-		public function get_all_news(){
-			$query = $this->db->get('artikel');
+		public function get_all_news($limit = FALSE, $offset = FALSE){
+			if ($limit) {
+				$this->db->limit($limit, $offset);
+			}
+
+			$this->db->order_by('artikel.datepost', 'DESC');
+
 			$this->db->join('kategori', 'kategori.idKategori = artikel.idKategori');
+
+			$query = $this->db->get('artikel');
+
 			return $query;
+		}
+
+		public function get_total_news(){
+			return $this->db->count_all('artikel');
 		}
 
 		public function get_articles($offset = 0){

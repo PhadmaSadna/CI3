@@ -11,60 +11,45 @@
 
 	    public function index()
         {
-            $url = $this->uri->segment(3);
-            $this->load->library('pagination');
+            $limit_per_page = 6;
 
-            $x['data'] = $this->List_Blog->get_articles($url);
+            $start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+
+            $total_records = $this->List_Blog->get_total_news();
+
+            if ($total_records > 0) {
+                $data['all_news'] = $this->List_Blog->get_all_news($limit_per_page, $start_index);
+
+                $config['base_url'] = base_url() . 'Blog/index';
+                $config['total_rows'] = $total_records;
+                $config['per_page'] = $limit_per_page;
+                $config["uri_segment"] = 3;
+                
+                //$this->pagination->initialize($config);
+                    
+                //$data["links"] = $this->pagination->create_links();
+
+            }
             
-            $paging = $x['data']['getRows'];
-            $config['base_url'] = 'http://localhost/ci3/page';
-            $config['total_rows'] = $paging;
-            $config['per_page'] = 2;
-            $config['uri_segment'] = 3;
-            $config['num_links'] = 2;
-            $config['full_tag_open'] = '<div><ul class="pagination">';
-            $config['full_tag_close'] = '</ul></div>';
-            $config['prev_link'] = '&lt; Prev';
-            $config['prev_tag_open'] = '<li>';
-            $config['prev_tag_close'] = '</li>';
-            $config['next_link'] = 'Next &gt;';
-            $config['next_tag_open'] = '<li>';
-            $config['next_tag_close'] = '</li>';
-            $config['cur_tag_open'] = '<li class="active"><a href="#">';
-            $config['cur_tag_close'] = '</a></li>';
-            $config['num_tag_open'] = '<li>';
-            $config['num_tag_close'] = '</li>';
-            $config['first_link'] = 'First';
-            $config['first_tag_open'] = '<li>';
-            $config['first_tag_close'] = '</li>';
-            $config['last_link'] = 'Last';
-            $config['last_tag_open'] = '<li>';
-            $config['last_tag_close'] = '</li>';
-            
-            $this->pagination->initialize($config);
-
-            $this->load->view('v_BlogAdmin', $x);
-            $x['pagination'] = $this->pagination->create_links();
-        }
-
-        public function view()
-        {
-            $id = $this->uri->segment(3);
-            $x['data'] = $this->List_Blog->get_news_by_id($id);
-            $this->load->view('v_BlogId', $x);
+            $this->load->view('Header.php');
+            $this->load->view('frontend/v_BlogAdmin', $data);
         }
 
         public function insert_news(){
             $this->load->helper('form');
             $this->load->library('form_validation');
 
+            $data['kategori'] = $this->List_Blog->generate_cat_dropdown();
+
             $this->form_validation->set_rules('author', 'Author', 'required');
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('content', 'Content', 'required');
-            $this->form_validation->set_rules('image', 'Image', 'required');
+            $this->form_validation->set_rules('idKategori', 'ID Kategori', 'required');
+
 
                if ($this->form_validation->run() == FALSE) {
-                   $this->load->view('v_CreateNews');
+                    $this->load->view('Header.php');
+                    $this->load->view('blog/v_CreateNews', $data, FALSE);
                } else {
                     $config['upload_path'] = 'assets/img/';
                     $config['allowed_types'] = 'jpg|png|jpeg';
@@ -79,6 +64,7 @@
                         $data = array('upload_data' => $this->upload->data());
                         
                         $data['input'] = array(
+                            'idKategori' => $this->input->post('idKategori'),
                             'author' => $this->input->post('author'),
                             'title' => $this->input->post('title'),
                             'content' => $this->input->post('content'),
@@ -94,18 +80,20 @@
         }
 
         public function edit_news(){
+            $data['kategori'] = $this->List_Blog->generate_cat_dropdown();
             $this->load->helper('form');
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('author', 'Author', 'required');
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('content', 'Content', 'required');
-            $this->form_validation->set_rules('image', 'Image', 'required');
+            $this->form_validation->set_rules('idKategori', 'ID Kategori', 'required');
 
             $id = $this->uri->segment(3);
             $data['show_article'] = $this->List_Blog->get_news_by_id($id);
             if ($this->form_validation->run() == FALSE) {
-                $this->load->view('v_EditNews',$data);
+                $this->load->view('Header.php');
+                $this->load->view('blog/v_EditNews',$data, FALSE);
             } else {
                 $config['upload_path'] = 'assets/img/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
@@ -120,6 +108,7 @@
                     $data = array('upload_data' => $this->upload->data());
                     
                     $data['input'] = array(
+                        'idKategori' => $this->input->post('idKategori'),
                         'author' => $this->input->post('author'),
                         'title' => $this->input->post('title'),
                         'content' => $this->input->post('content'),
@@ -138,6 +127,8 @@
             $this->List_Blog->delete_news($id);
             redirect('blog/index','refresh');
         }
+
+
 
 	}
 ?>

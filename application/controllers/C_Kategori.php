@@ -19,6 +19,7 @@ class C_Kategori extends CI_Controller{
 		// Dapatkan semua kategori
 		$data['kategori'] = $this->M_Kategori->get_all_categories();
 
+		$this->load->view('Header.php');
 		$this->load->view('kategori/v_Kategori', $data);
 	}
 
@@ -40,6 +41,7 @@ class C_Kategori extends CI_Controller{
 		);
 
 		if($this->form_validation->run() === FALSE){
+			$this->load->view('Header.php');
 			$this->load->view('kategori/v_CreateCategory');
 		} else {
 			$this->M_Kategori->create_category();
@@ -53,7 +55,7 @@ class C_Kategori extends CI_Controller{
 		// Get artikel dari model berdasarkan $id
 		$data['kategori'] = $this->M_Kategori->get_category_by_id($id);
 		// Jika id kosong atau tidak ada id yg dimaksud, lempar user ke halaman list category
-		if ( empty($id) || !$data['kategori'] ) redirect('blog');
+		if ( empty($id) || !$data['kategori'] ) redirect('C_Kategori');
 
 		// Kita butuh helper dan library berikut
 	    $this->load->helper('form');
@@ -67,7 +69,8 @@ class C_Kategori extends CI_Controller{
 	    // Cek apakah input valid atau tidak
 	    if ($this->form_validation->run() === FALSE)
 	    {
-	        $this->load->view('kategori/v_EditCategory');
+	    	$this->load->view('Header.php');
+	        $this->load->view('kategori/v_EditCategory', $data, FALSE);
 
 	    } else {
 
@@ -78,8 +81,10 @@ class C_Kategori extends CI_Controller{
     		
     		// Update kategori sesuai post_data dan id-nya
 	        if ($this->M_Kategori->update_category($post_data, $id)) {
+	        	$this->load->view('Header.php');
 		        $this->load->view('kategori/v_Kategori');
 	        } else {
+	        	$this->load->view('Header.php');
 		        $this->load->view('kategori/v_Kategori');
 	        }
 
@@ -91,7 +96,7 @@ class C_Kategori extends CI_Controller{
 	{
 
 		$this->M_Kategori->delete_category($id);
-
+		$this->load->view('Header.php');
 		$this->load->view('kategori/v_Kategori');
 	}
 }
