@@ -5,6 +5,7 @@
         </a>
       </div>
 
+      <div class="row">
       <?php
         function limit_words($string, $word_limit){
           $words = explode(" ", $string);
@@ -19,7 +20,6 @@
           $image    = $i['image'];
         
       ?>
-      <div class="row">
       <div class="col-md-4">
         <br>
             <div class="card mb-4" style="width: 20rem;">
@@ -39,14 +39,12 @@
       </div> &nbsp;  
       <?php endforeach;?>
     </div>
+    <div class="container" align="center">
+      <?php echo $links; ?>
+    </div>
   </div>
-  <?php
-    // $links ini berasal dari fungsi pagination
-    // Jika $links ada (data melebihi jumlah max per page), maka tampilkan
-    if (isset($links)) {
-      echo $links;
-    }
-  ?>
+  
+  
 
 </body>
 </html>

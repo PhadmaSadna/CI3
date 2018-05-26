@@ -36,14 +36,19 @@
 		}
 
 		public function get_total_news(){
-			return $this->db->count_all('artikel');
+			return $this->db->get('artikel')->num_rows();
 		}
 
-		public function get_articles($offset = 0){
-			$query['select'] = $this->db->select('*')->from('artikel')->limit(2,$offset)->order_by('datepost', 'desc')->get();
-            $rows = $this->db->get('artikel');
-            $query['getRows'] = $rows->num_rows();
-     		return $query;
+		// public function get_articles($offset = 0){
+		// 	$query['select'] = $this->db->select('*')->from('artikel')->limit(2,$offset)->order_by('datepost', 'desc')->get();
+  //           $rows = $this->db->get('artikel');
+  //           $query['getRows'] = $rows->num_rows();
+  //    		return $query;
+		// }
+
+		public function get_articles($limit = null, $offset = null){
+			 $this->db->limit($limit, $offset);
+          return $this->db->get('artikel');
 		}
 
 		public function create_news($data){

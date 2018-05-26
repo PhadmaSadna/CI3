@@ -12,26 +12,23 @@
 
 	    public function index()
         {
-            $limit_per_page = 6;
+            $limit_per_page = 4;
 
-            $start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+            $start_index = ( $this->uri->segment(4) ) ? $this->uri->segment(4) : 0;
 
             $total_records = $this->List_Blog->get_total_news();
 
-            if ($total_records > 0) {
-                $data['all_news'] = $this->List_Blog->get_all_news($limit_per_page, $start_index);
+            $data["all_news"] = $this->List_Blog->get_articles($limit_per_page, $start_index);
 
-                $config['base_url'] = base_url() . 'Blog/index';
-                $config['total_rows'] = $total_records;
-                $config['per_page'] = $limit_per_page;
-                $config["uri_segment"] = 3;
-                
-                $this->pagination->initialize($config);
-                    
-                $data["links"] = $this->pagination->create_links();
+            $config['base_url'] = base_url() . 'Blog/index';
+            $config['total_rows'] = $total_records;
+            $config['per_page'] = $limit_per_page;
+            $config["uri_segment"] = 4;
 
-            }
-            
+            $this->pagination->initialize($config);
+
+            $data["links"] = $this->pagination->create_links();
+
             $this->load->view('Header.php');
             $this->load->view('blog/v_Blog', $data);
         }
