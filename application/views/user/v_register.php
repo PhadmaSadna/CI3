@@ -46,8 +46,21 @@
           <input type="password" class="form-control" name="password2" required>
           <div class="invalid-feedback">Please Fill The Confirm Password!</div>
         </div>
-        <input type="submit" id="submitBtn" class="btn btn-primary" value="Posting"><hr>
+        <div class="form-group">
+          <label for="">Pilih Paket Membership</label>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="membership" id="premiumauthor" value="4" checked>
+              <label class="form-check-label" for="premiumauthor">Premium Author</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="membership" id="freeauthor" value="5">
+              <label class="form-check-label" for="freeauthor">Free Author</label>
+          </div>
+        </div><hr>
+        <input type="submit" id="submitBtn" class="btn btn-primary" value="Register">
       </div>
+      
+
     </div>
 
     <script>

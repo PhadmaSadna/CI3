@@ -3,18 +3,28 @@
 <head>
   <title>Introduction CI With Bootstrap</title>
   
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fontawesome/web-fonts-with-css/css/fontawesome.min.css')?>">
+  <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fontawesome/web-fonts-with-css/css/fontawesome.min.css')?>">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
 
-    <!-- Data Tables -->
+  <!--Data Tables
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+   <!-- OffLine -->
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/dataTables.bootstrap4.min.css')?>">
+   <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
+   <script type="text/javascript" src="<?php echo base_url('assets/js/dataTables.bootstrap4.min.js')?>"></script>
+   <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.dataTables.min.js')?>"></script>
+   <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-1.12.4.js')?>"></script>
+   <script type="text/javascript" src="<?php echo base_url('assets/js/validation.js')?>"></script>
+
 
 
 </head>
@@ -74,5 +84,6 @@
     <?php if($this->session->flashdata('user_loggedout')): ?>
       <?php echo '<div class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</div>'; ?>
     <?php endif; ?>
+
   
   <br>

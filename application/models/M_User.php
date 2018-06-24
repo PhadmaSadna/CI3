@@ -14,7 +14,8 @@ class M_User extends CI_Model {
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
             'password' => $enc_password,
-            'dateRegister' => date("Y/m/d")
+            'dateRegister' => date("Y/m/d"),
+            'fk_idLevel' => $this->input->post('membership'),
         );
 
         // Insert user
@@ -36,4 +37,46 @@ class M_User extends CI_Model {
             return false;
         }
     }
+
+    public function get_user_level($idUser) {
+       // Dapatkan data level
+       $this->db->select('fk_idLevel');
+       $this->db->where('idUser', $idUser);
+
+       $result = $this->db->get('user');
+
+       if ($result->num_rows() == 1) {
+           return $result->row(0)->fk_idLevel;
+       } else {
+           return false;
+       }
+   }
+
+   public function get_user_details($username)
+   {
+       $this->db->join('level','level.idLevel = user.fk_idLevel','left');
+       $this->db->where('username', $username);
+
+       $result = $this->db->get('user');
+
+       if ($result->num_rows() == 1) {
+           return $result->row();
+       } else {
+           return false;
+       }
+   }
+
+   public function get_level_name($idLevel)
+   {
+        $this->db->select('nmLevel');
+        $this->db->where('idLevel', $idLevel);
+
+        $result = $this->db->get('level');
+
+        if ($result->num_rows() == 1) {
+            return $result->row();
+        } else {
+            return false;
+        }
+   }
 }

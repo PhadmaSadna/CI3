@@ -59,9 +59,10 @@ class C_User extends CI_Controller{
             if($idUser){
                 // Buat session
                 $user_data = array(
-                    'idUser' => $user_id,
+                    'idUser' => $idUser,
                     'username' => $username,
-                    'logged_in' => true
+                    'logged_in' => true,
+                    'level' => $this->M_User->get_user_level($idUser)
                 );
 
                 $this->session->set_userdata($user_data);
@@ -69,7 +70,7 @@ class C_User extends CI_Controller{
                 // Set message
                 $this->session->set_flashdata('user_loggedin', 'Anda sudah login');
 
-                redirect('Blog');
+                redirect('C_User/dashboard');
             } else {
                 // Set message
                 $this->session->set_flashdata('login_failed', 'Login invalid');
@@ -91,5 +92,22 @@ class C_User extends CI_Controller{
 
         redirect('C_User/login_user');
     }
+
+    public function dashboard(){
+
+        if(!$this->session->userdata('logged_in')){
+            redirect('C_User/login_user');
+        }
+
+        $idUser = $this->session->userdata('username');
+
+        // Dapatkan detail user
+        $data['user'] = $this->M_User->get_user_details($idUser);
+
+        // Load dashboard
+        $this->load->view('Header');
+        $this->load->view('user/v_dashboard', $data);
+    }
+
 
 }

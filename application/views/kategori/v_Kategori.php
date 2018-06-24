@@ -7,13 +7,7 @@
     </div>
     <div class="container">
       <?php
-        function limit_words($string, $word_limit){
-          $words = explode(" ", $string);
-          return implode(" ", array_splice($words, 0, $word_limit));
-        }
-
         foreach ($kategori as $key) :
-        
       ?>
         <br>
         <div class="row">
