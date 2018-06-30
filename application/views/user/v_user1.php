@@ -20,12 +20,6 @@
 	   				<h4>Category Data</h4>
 	   			</a>
 	   		</div>  
-        <div class="col-sm">
-          <a href="<?php echo base_url().'BlogAdmin/'?>">
-            <img src="../assets/icon/4.png" class="img-fluid"> <br><br>
-            <h4>DataTable</h4>
-          </a>
-        </div>
 	   		<div class="col-sm"></div>
 	    </div>
    </div>

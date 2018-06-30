@@ -45,28 +45,22 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url()?>Blog/">Blog</a>
         </li>
+        <?php if($this->session->userdata('logged_in')) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url()?>C_Kategori/">Category</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url()?>BlogAdmin/">Admin Blog</a>
+          <a class="nav-link" href="<?php echo site_url()?>C_User/dashboard">My Dashboard</a>
         </li>
       </ul>
+        <div class="btn-group" role="group" aria-label="Data baru">
+          <?php echo anchor('C_User/logout', 'Logout', array('class' => 'btn btn-outline-light')); ?>
+        </div>
+      <?php endif; ?>
+      
       <?php if(!$this->session->userdata('logged_in')) : ?>
         <div class="btn-group" role="group" aria-label="Data baru">
           <?php echo anchor('C_User/register_user', 'Register', array('class' => 'btn btn-outline-light')); ?>
           <?php echo anchor('C_User/login_user', 'Login', array('class' => 'btn btn-outline-light')); ?>
         </div>
       <?php endif; ?>
-
-      <?php if($this->session->userdata('logged_in')) : ?>
-        <div class="btn-group" role="group" aria-label="Data baru">
-          <?php echo anchor('Blog/insert_news', 'Artikel Baru', array('class' => 'btn btn-outline-light')); ?>
-          <?php echo anchor('C_Kategori/create', 'Kategori Baru', array('class' => 'btn btn-outline-light')); ?>
-          <?php echo anchor('C_User/logout', 'Logout', array('class' => 'btn btn-outline-light')); ?>
-        </div>
-      <?php endif; ?>
-
     </div>
   </nav>
 

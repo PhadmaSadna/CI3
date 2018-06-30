@@ -10,8 +10,13 @@
             $this->load->library('pagination');
 	    }
 
+        public function get_userdata(){
+            $userData = $this->session->userdata();
+            return $userData;
+        }
+
 	    public function index()
-        {
+        {   
             $limit_per_page = 4;
 
             $start_index = ( $this->uri->segment(4) ) ? $this->uri->segment(4) : 0;
@@ -29,8 +34,8 @@
 
             $data["links"] = $this->pagination->create_links();
 
-            $this->load->view('Header.php');
-            $this->load->view('blog/v_Blog', $data);
+            $this->load->view('Header');
+            $this->load->view('blog/v_Blog', $data);            
         }
 
         public function view()
@@ -133,8 +138,6 @@
             $this->List_Blog->delete_news($id);
             redirect('blog/index','refresh');
         }
-
-
 
 	}
 ?>

@@ -1,9 +1,5 @@
     <div class="container">
-      <div class="col-xs-12 col-sm-9 col-md-9">
-        <a href="<?php echo base_url().'blog/insert_news'?>">
-          <button type="button" class="btn btn-outline-primary">Add News</button>
-        </a>
-      </div>
+      
 
       <div class="row">
       <?php
@@ -31,7 +27,6 @@
                   <a href="<?php echo base_url().'Blog/view/'.$id;?>"> Read more... </a>
                 </p>
                 <div class="btn-group">
-                  <a href="<?php echo site_url('Blog/edit_news/'.$i['id'])?>" class="btn btn-outline-warning">Edit</a>
                 <a href="<?php echo site_url('Blog/delete_news/'.$i['id']) ?>" class="btn btn-outline-danger">Delete</a>
                 </div>
               </div>

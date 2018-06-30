@@ -13,19 +13,7 @@
 	   				<img src="../assets/icon/3.png" class="img-fluid"> <br><br>
 		   			<h4>Create News</h4>
 	   			</a>
-   			</div>
-	   		<div class="col-sm">
-	   			<a href="<?php echo base_url().'C_Kategori/'?>">
-	   				<img src="../assets/icon/5.jpg" class="img-fluid"> <br><br>
-	   				<h4>Category Data</h4>
-	   			</a>
-	   		</div>  
-        <div class="col-sm">
-          <a href="<?php echo base_url().'BlogAdmin/'?>">
-            <img src="../assets/icon/4.png" class="img-fluid"> <br><br>
-            <h4>DataTable</h4>
-          </a>
-        </div>
+   			</div> 
 	   		<div class="col-sm"></div>
 	    </div>
    </div>

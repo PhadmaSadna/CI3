@@ -80,17 +80,9 @@ class C_User extends CI_Controller{
         }
     }
 
-    // Log user out
-    public function logout(){
-        // Unset user data
-        $this->session->unset_userdata('logged_in');
-        $this->session->unset_userdata('idUser');
-        $this->session->unset_userdata('username');
-
-        // Set message
-        $this->session->set_flashdata('user_loggedout', 'Anda sudah log out');
-
-        redirect('C_User/login_user');
+    public function get_userdata(){
+        $userData = $this->session->userdata();
+        return $userData;
     }
 
     public function dashboard(){
@@ -104,9 +96,31 @@ class C_User extends CI_Controller{
         // Dapatkan detail user
         $data['user'] = $this->M_User->get_user_details($idUser);
 
-        // Load dashboard
-        $this->load->view('Header');
-        $this->load->view('user/v_dashboard', $data);
+        $userData = $this->get_userdata();
+
+        if ($userData['level'] === '4'){
+            $this->load->view('Header');
+            $this->load->view('user/v_user1', $data);
+        } elseif ($userData['level'] === '5'){
+            $this->load->view('Header');
+            $this->load->view('user/v_user2', $data);
+        } elseif ($userData['level'] === '3') {
+            $this->load->view('Header');
+            $this->load->view('user/v_dashboard', $data);
+        }
+    }
+
+    // Log user out
+    public function logout(){
+        // Unset user data
+        $this->session->unset_userdata('logged_in');
+        $this->session->unset_userdata('idUser');
+        $this->session->unset_userdata('username');
+
+        // Set message
+        $this->session->set_flashdata('user_loggedout', 'Anda sudah log out');
+
+        redirect('C_User/login_user');
     }
 
 

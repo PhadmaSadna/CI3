@@ -1,12 +1,12 @@
     <div class="container">
-      <div class="col-xs-6 col-sm-6 col-md-6">
-        <a href="<?php echo base_url().'C_Kategori/create'?>">
-          <button type="button" class="btn btn-outline-primary">Add Category</button>
-        </a>
-      </div>
+      <a href="<?php echo base_url().'C_Kategori/create'?>" class="btn btn-outline-danger">Add Category</a>
     </div>
     <div class="container">
       <?php
+      function limit_words($string, $word_limit){
+          $words = explode(" ", $string);
+          return implode(" ", array_splice($words, 0, $word_limit));
+        }
         foreach ($kategori as $key) :
       ?>
         <br>
